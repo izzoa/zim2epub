@@ -15,6 +15,14 @@ A Python command-line tool to convert ZIM files (used by Kiwix and others for of
 - Extracts content from main entry when standard article paths aren't available
 - Avoids duplicate images in the output EPUB
 
+## Platform Support
+
+This package is compatible with:
+- Linux (Debian, Ubuntu, Fedora, etc.)
+- macOS
+
+**Note:** Windows is not currently supported due to limitations with the libzim library.
+
 ## Recent Updates
 
 - **Improved URL handling**: Added support for URL-encoded paths and special characters
@@ -30,6 +38,7 @@ A Python command-line tool to convert ZIM files (used by Kiwix and others for of
 
 - Python 3.6 or higher
 - C++ libzim library (required for the Python bindings)
+- Linux or macOS operating system
 
 ### Installing C++ libzim
 
