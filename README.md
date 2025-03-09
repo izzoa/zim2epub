@@ -1,3 +1,4 @@
+[![Build and Release](https://github.com/izzoa/zim2epub/actions/workflows/build-and-release.yml/badge.svg?event=release)](https://github.com/izzoa/zim2epub/actions/workflows/build-and-release.yml)
 # ZIM to EPUB Converter
 
 A Python command-line tool to convert ZIM files (used by Kiwix and others for offline content) to EPUB format for e-readers.
