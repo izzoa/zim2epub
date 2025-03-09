@@ -80,7 +80,7 @@ dnf install libzim-devel
 You can also install the package directly from PyPI:
 
 ```bash
-pip install pyzim2epub
+pip install zim2epub
 ```
 
 ## Usage
