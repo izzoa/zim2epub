@@ -22,6 +22,7 @@ A Python command-line tool to convert ZIM files (used by Kiwix and others for of
 - **Better article extraction**: Added multiple methods to extract articles from different ZIM file structures
 - **Robust error handling**: Added comprehensive error handling and fallback mechanisms
 - **Detailed logging**: Added verbose logging to help diagnose issues
+- **CI/CD Pipeline**: Added GitHub Actions for automated testing and releases
 
 ## Installation
 
@@ -64,6 +65,14 @@ dnf install libzim-devel
    ```bash
    pip install -e .
    ```
+
+### Installing from PyPI
+
+You can also install the package directly from PyPI:
+
+```bash
+pip install pyzim2epub
+```
 
 ## Usage
 
@@ -137,6 +146,34 @@ converter = ZimToEpub(
 output_path = converter.convert()
 print(f"EPUB created at: {output_path}")
 ```
+
+## Development
+
+### Running Tests
+
+```bash
+pytest
+```
+
+### Building the Package
+
+```bash
+python -m build
+```
+
+### Creating a Release
+
+1. Update the version in `setup.py`
+2. Create a new tag:
+   ```bash
+   git tag -a v0.1.0 -m "Release v0.1.0"
+   ```
+3. Push the tag:
+   ```bash
+   git push origin v0.1.0
+   ```
+
+The GitHub Actions workflow will automatically build and publish the release to PyPI.
 
 ## Troubleshooting
 

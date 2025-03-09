@@ -9,14 +9,14 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="pyzim2epub",
+    name="zim2epub",
     version="0.1.0",
-    author="pyzim2epub Contributors",
-    author_email="your.email@example.com",
+    author="Anthony Izzo",
+    author_email="izzo.anthony@gmail.com",
     description="Convert ZIM files to EPUB format",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/pyzim2epub",
+    url="https://github.com/izzoa/zim2epub",
     packages=find_packages(),
     py_modules=["zim2epub"],
     classifiers=[
