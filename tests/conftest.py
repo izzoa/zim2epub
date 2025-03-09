@@ -23,7 +23,7 @@ def mock_zim_archive():
     # Configure item for main entry
     mock_item = MagicMock()
     mock_item.content = MagicMock()
-    mock_item.content.tobytes.return_value = b'<html><head><title>Test Page</title></head><body><h1>Test</h1></body></html>'
+    mock_item.content.tobytes.return_value = b'<html><head><title>Test Page</title></head><body><h1>Test</h1><a href="A/1">Link 1</a><a href="A/2">Link 2</a><a href="mainPage">Main Page</a></body></html>'
     mock_item.mimetype = 'text/html'
     mock.main_entry.get_item.return_value = mock_item
     

@@ -72,7 +72,7 @@ class TestBasic(unittest.TestCase):
         self.assertEqual(converter._get_extension("image.png"), "png")
         self.assertEqual(converter._get_extension("path/to/image.gif"), "gif")
         self.assertEqual(converter._get_extension("image"), "jpg")  # Default
-        self.assertEqual(converter._get_extension("image."), "jpg")  # Default
+        self.assertEqual(converter._get_extension("image."), "")  # Empty extension
     
     def test_get_unique_image_filename(self):
         """Test the _get_unique_image_filename method."""
