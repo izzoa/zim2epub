@@ -1,4 +1,3 @@
-[![Build and Release](https://github.com/izzoa/zim2epub/actions/workflows/build-and-release.yml/badge.svg?event=release)](https://github.com/izzoa/zim2epub/actions/workflows/build-and-release.yml)
 # ZIM to EPUB Converter
 
 A Python command-line tool to convert ZIM files (used by Kiwix and others for offline content) to EPUB format for e-readers.
@@ -15,6 +14,7 @@ A Python command-line tool to convert ZIM files (used by Kiwix and others for of
 - Supports various ZIM file structures and formats
 - Extracts content from main entry when standard article paths aren't available
 - Avoids duplicate images in the output EPUB
+- Full crawl mode for problematic ZIM files
 
 ## Platform Support
 
@@ -26,12 +26,14 @@ This package is compatible with:
 
 ## Recent Updates
 
+- **Package Structure**: Reorganized into a proper Python package structure for better maintainability
 - **Improved URL handling**: Added support for URL-encoded paths and special characters
 - **Enhanced image processing**: Fixed issues with duplicate images and improved mimetype detection
 - **Better article extraction**: Added multiple methods to extract articles from different ZIM file structures
 - **Robust error handling**: Added comprehensive error handling and fallback mechanisms
 - **Detailed logging**: Added verbose logging to help diagnose issues
 - **CI/CD Pipeline**: Added GitHub Actions for automated testing and releases
+- **Full crawl mode**: Added option to crawl through all entries in the ZIM file
 
 ## Installation
 
@@ -58,12 +60,20 @@ apt-get install libzim-dev
 dnf install libzim-devel
 ```
 
-### Installing the Python package
+### Installing from PyPI
+
+You can install the package directly from PyPI:
+
+```bash
+USE_SYSTEM_LIBZIM=1 pip install zim2epub
+```
+
+### Installing from Source
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/pyzim2epub.git
-   cd pyzim2epub
+   git clone https://github.com/izzoa/zim2epub.git
+   cd zim2epub
    ```
 
 2. Install the required dependencies:
@@ -71,25 +81,22 @@ dnf install libzim-devel
    USE_SYSTEM_LIBZIM=1 pip install -r requirements.txt
    ```
 
-3. (Optional) Install the package in development mode:
+3. Install the package:
+   ```bash
+   pip install .
+   ```
+
+   Or in development mode:
    ```bash
    pip install -e .
    ```
-
-### Installing from PyPI
-
-You can also install the package directly from PyPI:
-
-```bash
-pip install zim2epub
-```
 
 ## Usage
 
 ### Basic usage
 
 ```bash
-python zim2epub.py path/to/your/file.zim
+python -m zim2epub.cli path/to/your/file.zim
 ```
 
 This will create an EPUB file with the same name as the input file in the current directory.
@@ -97,7 +104,7 @@ This will create an EPUB file with the same name as the input file in the curren
 ### Command-line Options
 
 ```
-usage: zim2epub.py [-h] [-o OUTPUT] [--no-images] [--no-toc] [--max-articles MAX_ARTICLES] [-v] zim_file
+usage: python -m zim2epub.cli [-h] [-o OUTPUT] [--no-images] [--no-toc] [--max-articles MAX_ARTICLES] [-v] [--full-crawl] zim_file
 
 Convert ZIM files to EPUB format
 
@@ -113,28 +120,34 @@ optional arguments:
   --max-articles MAX_ARTICLES
                         Maximum number of articles to include (default: None)
   -v, --verbose         Show verbose output (default: False)
+  --full-crawl          Use full crawl mode to extract all articles (default: False)
 ```
 
 ### Examples
 
 Convert a ZIM file without images (useful for smaller file size):
 ```bash
-python zim2epub.py wikipedia.zim --no-images
+python -m zim2epub.cli wikipedia.zim --no-images
 ```
 
 Convert a ZIM file with a custom output path:
 ```bash
-python zim2epub.py wikipedia.zim -o my-wikipedia.epub
+python -m zim2epub.cli wikipedia.zim -o my-wikipedia.epub
 ```
 
 Convert only the first 100 articles of a ZIM file:
 ```bash
-python zim2epub.py wikipedia.zim --max-articles 100
+python -m zim2epub.cli wikipedia.zim --max-articles 100
 ```
 
 Enable verbose output for debugging:
 ```bash
-python zim2epub.py wikipedia.zim -v
+python -m zim2epub.cli wikipedia.zim -v
+```
+
+Enable full crawl mode for problematic ZIM files:
+```bash
+python -m zim2epub.cli wikipedia.zim --full-crawl
 ```
 
 ### Using as a Library
@@ -150,7 +163,8 @@ converter = ZimToEpub(
     include_images=True,
     generate_toc=True,
     max_articles=None,
-    verbose=True
+    verbose=True,
+    full_crawl=False  # Set to True to use full crawl mode
 )
 
 output_path = converter.convert()
@@ -173,7 +187,7 @@ python -m build
 
 ### Creating a Release
 
-1. Update the version in `setup.py`
+1. Update the version in `zim2epub/__init__.py`
 2. Create a new tag:
    ```bash
    git tag -a v0.1.0 -m "Release v0.1.0"
@@ -193,6 +207,7 @@ If you encounter issues:
 2. Make sure you have the C++ libzim library installed
 3. Check that your ZIM file is valid and not corrupted
 4. For image issues, try using the `--no-images` flag
+5. For problematic ZIM files, try using the `--full-crawl` flag
 
 ## Requirements
 

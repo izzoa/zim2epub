@@ -10,7 +10,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="zim2epub",
-    version="0.1.3",
+    version="0.1.4",
     author="Anthony Izzo",
     author_email="izzo.anthony@gmail.com",
     description="Convert ZIM files to EPUB format",
@@ -18,7 +18,7 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/izzoa/zim2epub",
     packages=find_packages(),
-    py_modules=["zim2epub"],
+    py_modules=[],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
@@ -38,7 +38,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "zim2epub=zim2epub:main",
+            "zim2epub=zim2epub.cli:main",
         ],
     },
 ) 
